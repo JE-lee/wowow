@@ -2,8 +2,11 @@
 const program = require('commander')
 const spawn = require('cross-spawn')
 const helper = require('./helper')
+
 const eslint = require('./feature/eslint-prettier/eslint')
 const prettier = require('./feature/eslint-prettier/prettier')
+const mocha = require('./feature/mocha/index')
+const debugMocha = require('./feature/mocha/vscode-debug')
 
 function exec(command, args, isSync = false){
   return (isSync ? spawn.sync : spawn)(command, args, { stdio: 'inherit'})
@@ -16,6 +19,14 @@ function retry(commands){
   }
 }
 
+function installDependencies(dependencies){
+  retry([
+    `yarn add ${ dependencies.join(' ')} --dev`,
+    `npm install ${ dependencies.join(' ') } --save-dev`
+  ])
+}
+
+// eslint
 program
   .version('0.0.1', '-v, --vers', 'output the current version')
   .command('eslint')
@@ -36,13 +47,24 @@ program
     }else {
       const { devDependencies: eslintDepend } = helper.install(opt, eslint)
       const { devDependencies: prettierDepen } = helper.install(opt, prettier)
-      const dependencies = eslintDepend.concat(prettierDepen).join(' ')
-      retry([
-        `yarn add ${ dependencies} --dev`,
-        `npm install ${ dependencies } --save-dev`
-      ])
+      const dependencies = eslintDepend.concat(prettierDepen)
+      installDependencies(dependencies)
     }
 
+  })
+
+// mocha
+program
+  .command('mocha')
+  .option('-f, --file, <file>')
+  .action((opt) => {
+    // vscode mocha debug configuration
+    if(opt && typeof opt === 'string'){
+      debugMocha.install({ file: opt })
+      return 
+    }
+    const { devDependencies } = helper.install(opt, mocha)
+    installDependencies(devDependencies)
   })
 
 program.parse(process.argv)
