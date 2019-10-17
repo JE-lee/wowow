@@ -25,7 +25,7 @@ function install(feat, name){
 			// 比较ignore
 			const ignore = helper.getIgnore(path.join(root, `/${ignoreName}`))
 			expect(config).to.deep.equal(json)
-			expect(ignore).to.have.members(gitignore)
+			expect(ignore).to.include.members(gitignore)
 			done()
 		})
 		after(function(){
