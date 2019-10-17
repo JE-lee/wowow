@@ -1,0 +1,19 @@
+{
+  "name": "js-project-init",
+  "version": "1.0.0",
+  "description": "a cli tool for initing js project quickly",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jelee",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "fs-sync": "^1.0.6"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.1"
+  }
+}
