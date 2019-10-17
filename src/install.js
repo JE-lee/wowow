@@ -15,8 +15,10 @@ function exec(command, args, isSync = false){
 function retry(commands){
   for(let i = 0; i < commands.length; i++){
     let command = commands[i].split(' ')
-    if(!exec(command[0], command.slice(1), true).error) return
+    const result = exec(command[0], command.slice(1), true)
+    if(!result.error) return result
   }
+  return false
 }
 
 function installDependencies(dependencies){
@@ -56,7 +58,7 @@ program
 // mocha
 program
   .command('mocha')
-  .option('-f, --file, <file>')
+  .option('-f, --file, <file>', 'add a vscode debug configuration')
   .action((opt) => {
     // vscode mocha debug configuration
     if(opt && typeof opt === 'string'){
