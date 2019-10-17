@@ -29,7 +29,7 @@ function getJSON(file){
   }
 }
 
-function install(options, feat, root){
+function install(options, feat, root = (process.cwd())){
   const { ignore = [], devDependencies = [], config, filename, ignoreName } = feat.install(options)
   // config
   filename && saveToJSON(config, path.join(root, `/${filename}`))

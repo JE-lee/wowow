@@ -15,13 +15,14 @@ const geneDefault = () => {
       parserOptions: {
         // set to "script" (default) or "module" if your code is in ECMAScript modules.
         sourceType: 'module',
+        ecmaVersion: 2018
         // parser使用default, 只有在使用jsx，flow，或者ts的时候才使用babel-eslint
         // parser: 'babel-eslint'
       },
       // 后面覆盖前面
       // eslint:standard == eslint-config-standard
       // eslint configuration https://eslint.org/docs/user-guide/configuring
-      extends: ['eslint:standard', 'eslint-config-prettier'],
+      extends: ['eslint:recommended', 'eslint-config-prettier'],
       // plugins: ['vue'],
       rules: {
         // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
@@ -30,7 +31,7 @@ const geneDefault = () => {
       }
     },
     devDependencies: [
-      'eslint-config-standard',
+      'eslint',
       'eslint-config-prettier'
     ],
     // /node_modules/* and /bower_components/* in the project root are ignored by default
@@ -65,7 +66,7 @@ exports.install = function(options = {}){
 }
 
 exports.savePrefer = function(root){
-  const file = path.join(root || process.cwd, '/.eslintrc.json')
+  const file = path.join(root || process.cwd(), '/.eslintrc.json')
   if(!fsync.isFile(file)){
     console.log(chalk.red('can not find .eslintrc.js in the current directory.'))
   }
