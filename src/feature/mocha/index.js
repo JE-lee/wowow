@@ -1,5 +1,5 @@
-exports.install = function(options){
-	return {
-		devDependencies: ['mocha', '@babel-register', 'chai']
-	}
+exports.install = function(){
+  return {
+    devDependencies: ['mocha', '@babel-register', 'chai']
+  }
 }
