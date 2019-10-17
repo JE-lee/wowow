@@ -46,9 +46,9 @@ const geneDefault = () => {
   }
 }
 
-const preferPath = path.join(__dirname, '/eslint-prefer.json')
+const preferPath = path.join(__dirname, '/.eslint-prefer.json')
 
-exports.install = function(options){
+exports.install = function(options = {}){
   const { mocha = false, node = false, browser = false } = options
   let eslint = geneDefault()
   if(fsync.isFile(preferPath)){
@@ -64,12 +64,13 @@ exports.install = function(options){
   return eslint
 }
 
-exports.savePrefer = function(){
-  const file = path.join(process.cwd, '/.eslintrc.json')
+exports.savePrefer = function(root){
+  const file = path.join(root || process.cwd, '/.eslintrc.json')
   if(!fsync.isFile(file)){
     console.log(chalk.red('can not find .eslintrc.js in the current directory.'))
   }
   // recover
   fsync.copy(file, preferPath)
   console.log(chalk.green('save your .eslintrc.js success'))
+  return preferPath
 }
