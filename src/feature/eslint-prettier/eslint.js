@@ -40,7 +40,9 @@ const geneDefault = () => {
       'coverage/**',
       '.vscode/**',
       'dist/**'
-    ]
+    ],
+    filename: '.eslintrc.json',
+    ignoreName: '.eslintignore'
   }
 }
 
