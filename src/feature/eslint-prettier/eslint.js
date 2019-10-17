@@ -46,7 +46,7 @@ const geneDefault = () => {
 
 const preferPath = path.join(__dirname, '/eslint-prefer.json')
 
-exports.generate = function(options){
+exports.install = function(options){
   const { mocha = false, node = false, browser = false } = options
   let eslint = geneDefault()
   if(fsync.isFile(preferPath)){
