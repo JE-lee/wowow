@@ -1,3 +1,4 @@
+const ignore = require('./ignore').ignore
 exports.install = function(){
   const DEFAULT = {
     'trailingComma': 'es5',
@@ -10,6 +11,7 @@ exports.install = function(){
   return {
     devDependencies: ['prettier'],
     filename: '.prettierrc.json',
+    ignore,
     ignoreName: '.prettierignore',
     config: DEFAULT
   }

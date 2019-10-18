@@ -2,6 +2,7 @@
 const fsync = require('fs-sync')
 const path = require('path')
 const chalk = require('chalk')
+const ignore = require('./ignore').ignore
 
 const geneDefault = () => {
   return {
@@ -38,13 +39,7 @@ const geneDefault = () => {
       'eslint-config-prettier'
     ],
     // /node_modules/* and /bower_components/* in the project root are ignored by default
-    ignore: [
-      'package.json',
-      'yarn.lock',
-      'coverage/**',
-      '.vscode/**',
-      'dist/**'
-    ],
+    ignore,
     filename: '.eslintrc.json',
     ignoreName: '.eslintignore'
   }
