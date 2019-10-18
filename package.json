@@ -20,6 +20,6 @@
     "mocha": "^6.2.1"
   },
   "bin": {
-    "jpinit": "./src/install.js"
+    "lalala": "./src/install.js"
   }
 }
