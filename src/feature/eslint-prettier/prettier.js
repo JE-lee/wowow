@@ -8,6 +8,7 @@ exports.install = function(){
     'endOfLine': 'lf'
   }
   return {
+    devDependencies: ['prettier'],
     filename: '.prettierrc.json',
     ignoreName: '.prettierignore',
     config: DEFAULT

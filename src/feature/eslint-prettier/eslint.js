@@ -23,8 +23,10 @@ const geneDefault = () => {
       // eslint:standard == eslint-config-standard
       // eslint configuration https://eslint.org/docs/user-guide/configuring
       extends: ['eslint:recommended', 'eslint-config-prettier'],
+      plugins: ['prettier'],
       // plugins: ['vue'],
       rules: {
+        'prettier/prettier': ['error'],
         // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'one-var': 1, //禁止声明var
@@ -32,6 +34,7 @@ const geneDefault = () => {
     },
     devDependencies: [
       'eslint',
+      'eslint-plugin-prettier',
       'eslint-config-prettier'
     ],
     // /node_modules/* and /bower_components/* in the project root are ignored by default

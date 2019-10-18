@@ -2,6 +2,9 @@
 const program = require('commander')
 const spawn = require('cross-spawn')
 const helper = require('./helper')
+const path = require('path')
+const fsync = require('fs-sync')
+const chalk = require('chalk')
 
 const eslint = require('./feature/eslint-prettier/eslint')
 const prettier = require('./feature/eslint-prettier/prettier')
@@ -32,7 +35,6 @@ function installDependencies(dependencies){
 program
   .version('0.0.1', '-v, --vers', 'output the current version')
   .command('eslint')
-  .option('-q, --query', 'specify your style through answer question')
   .option('-s, --save', 'save your prefer eslint style')
   .action((opt) => {
     if(opt.save){
@@ -40,19 +42,22 @@ program
       return 
     }
 
-    if(opt.query){
-      retry([
-        'npm install eslint --save-dev',
-        'yarn add eslint --dev'
-      ])
-      exec('npx', ['eslint', '--init'], true)
+    const { devDependencies: eslintDepend } = helper.install(opt, eslint)
+    const { devDependencies: prettierDepen } = helper.install(opt, prettier)
+    const dependencies = eslintDepend.concat(prettierDepen)
+    installDependencies(dependencies)
+    // no .git
+    if(!fsync.isDir(path.join(process.cwd(), '/.git'))){
+      console.log(chalk.red(`
+        you shoulu init your git repository and then run 
+        npx mrm lin-staged
+      `))
+      return
     }else {
-      const { devDependencies: eslintDepend } = helper.install(opt, eslint)
-      const { devDependencies: prettierDepen } = helper.install(opt, prettier)
-      const dependencies = eslintDepend.concat(prettierDepen)
-      installDependencies(dependencies)
+      // pre-commit
+      exec('npx', ['mrm', 'lint-staged'], true)
     }
-
+    
   })
 
 // mocha
