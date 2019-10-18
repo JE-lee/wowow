@@ -20,12 +20,16 @@ function install(feat, name){
     it(`#${ name }/install`, function(done){
       const { config, filename, ignoreName} = helper.install({}, feat, root)
       removes.push(filename)
-      removes.push(ignoreName)
+      
       const json = helper.getJSON(path.join(root, `/${filename}`))
-      // 比较ignore
-      const ignore = helper.getIgnore(path.join(root, `/${ignoreName}`))
       expect(config).to.deep.equal(json)
-      expect(ignore).to.include.members(gitignore)
+      if(ignoreName){
+        removes.push(ignoreName)
+        // 比较ignore
+        const ignore = helper.getIgnore(path.join(root, `/${ignoreName}`))
+        expect(ignore).to.include.members(gitignore)
+      }
+      
       done()
     })
     after(function(){
