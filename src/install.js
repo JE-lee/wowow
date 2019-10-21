@@ -43,7 +43,7 @@ function installEslint(opt){
   const { devDependencies: prettierDepen } = helper.install(opt, prettier)
   const dependencies = eslintDepend.concat(prettierDepen)
   installDependencies(dependencies)
-  // no .git
+  // if no .git
   if(!hasGitRepos()){
     console.log(chalk.red(`
       you shoulu init your git repository and then run 
@@ -97,8 +97,8 @@ program
   .option('-f, --file, <file>', 'add a vscode debug configuration')
   .action((opt) => {
     // vscode mocha debug configuration
-    if(opt && typeof opt === 'string'){
-      debugMocha.install({ file: opt })
+    if(opt.file){
+      debugMocha.install({ file: opt.file })
       return 
     }
     const { devDependencies } = helper.install(opt, mocha)

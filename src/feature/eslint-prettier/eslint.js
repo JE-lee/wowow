@@ -66,7 +66,7 @@ exports.install = function(options = {}){
 exports.savePrefer = function(root){
   const file = path.join(root || process.cwd(), '/.eslintrc.json')
   if(!fsync.isFile(file)){
-    console.log(chalk.red('can not find .eslintrc.js in the current directory.'))
+    console.log(chalk.red('can not find .eslintrc.json in the current directory.'))
   }
   // recover
   fsync.copy(file, preferPath)
