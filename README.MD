@@ -1,18 +1,18 @@
-# wowwow
+# wowow
 一个给你的javascript项目快速集成ESlint, prettier, lint-staged,commitlint([Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0-beta.2/#why-use-conventional-commits))的命令行工具。
 
 ## installation
 ```bash
-yarn add wowwow -g
+yarn add wowow -g
 # or
-npm install wowwow -g
+npm install wowow -g
 ```
 ## usage
 只需要在你的项目下面执行以下命令
 ```bash
-wowwow
+wowow
 ```
-然后就可以轻松愉快地写代码了，wowwow...
+然后就可以轻松愉快地写代码了，wowow...
 
 
 ## why
@@ -35,9 +35,9 @@ wowwow
 ## advanced
 ```bash
 # 安装全部特性
-wowwow
+wowow
 # 只安装eslint，prettier, lint-statge
-wowwow eslint
+wowow eslint
 # 只安装commitlint
-wowwow commitlint
+wowow commitlint
 ```

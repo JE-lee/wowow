@@ -19,7 +19,7 @@
 * add eslint subcommand ([ea10c53](https://github.com/JE-lee/js-project-init/commit/ea10c534b6ac3922dc767c4c4aca240187d7f2ee))
 * add mocha command ([933e918](https://github.com/JE-lee/js-project-init/commit/933e91840937245b0adb31eca2272886b72b1cff))
 * add test for commitlint ([54125d6](https://github.com/JE-lee/js-project-init/commit/54125d69b7257b8de5a570babf4e1154266e0317))
-* change bin name with wowwow ([e8d9ab4](https://github.com/JE-lee/js-project-init/commit/e8d9ab47e68b34e22f0c472a4c4973e8e0607193))
+* change bin name with wowow ([e8d9ab4](https://github.com/JE-lee/js-project-init/commit/e8d9ab47e68b34e22f0c472a4c4973e8e0607193))
 * eslint command (not yet) ([6d69e69](https://github.com/JE-lee/js-project-init/commit/6d69e699501b39046109fed15f12245281bc5f2e))
 * init project ([7dd341c](https://github.com/JE-lee/js-project-init/commit/7dd341cf7ff0ca34205ddaf4576aad481cda4175))
 * pre-commit with eslint and prettier ([c265212](https://github.com/JE-lee/js-project-init/commit/c265212fe8602ef4b9a0052e675eeeca12e5c194))
