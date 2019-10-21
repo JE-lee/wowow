@@ -1,7 +1,7 @@
 {
-  "name": "js-project-init",
+  "name": "lalala",
   "version": "1.0.0",
-  "description": "a cli tool for initing js project quickly",
+  "description": "a cli tool for install ESlint, prettier, lint-staged and commitlint quickly",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,6 +9,18 @@
   },
   "author": "jelee",
   "license": "MIT",
+  "keywords": [
+    "ESlint",
+    "prettier",
+    "lint-staged",
+    "commitlint",
+    "project init",
+    "integration"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JE-lee/lalala.git"
+  },
   "dependencies": {
     "chalk": "^2.4.2",
     "commander": "^3.0.2",
