@@ -1,18 +1,18 @@
-# lalala
+# wowwow
 一个给你的javascript项目快速集成ESlint, prettier, lint-staged,commitlint([Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0-beta.2/#why-use-conventional-commits))的命令行工具。
 
 ## installation
 ```bash
-yarn add lalala -g
+yarn add wowwow -g
 # or
-npm install lalala -g
+npm install wowwow -g
 ```
 ## usage
 只需要在你的项目下面执行以下命令
 ```bash
-lalala
+wowwow
 ```
-然后就可以轻松愉快地写代码了，lalala...
+然后就可以轻松愉快地写代码了，wowwow...
 
 
 ## why
@@ -35,9 +35,9 @@ lalala
 ## advanced
 ```bash
 # 安装全部特性
-lalala
+wowwow
 # 只安装eslint，prettier, lint-statge
-lalala eslint
+wowwow eslint
 # 只安装commitlint
-lalala commitlint
+wowwow commitlint
 ```

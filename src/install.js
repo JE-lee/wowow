@@ -12,7 +12,7 @@ const mocha = require('./feature/mocha/index')
 const debugMocha = require('./feature/mocha/vscode-debug')
 const commitLint = require('./feature/commitlint/index')
 
-const bin = 'lalala'
+const bin = 'wowwow'
 
 function exec(command, args, isSync = false){
   return (isSync ? spawn.sync : spawn)(command, args, { stdio: 'inherit'})

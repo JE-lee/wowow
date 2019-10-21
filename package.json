@@ -1,5 +1,5 @@
 {
-  "name": "lalala",
+  "name": "wowwow",
   "version": "1.0.0",
   "description": "a cli tool for install ESlint, prettier, lint-staged and commitlint quickly",
   "main": "index.js",
@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/JE-lee/lalala.git"
+    "url": "https://github.com/JE-lee/wowwow.git"
   },
   "dependencies": {
     "chalk": "^2.4.2",
@@ -36,7 +36,7 @@
     "mocha": "^6.2.1"
   },
   "bin": {
-    "lalala": "./src/install.js"
+    "wowwow": "./src/install.js"
   },
   "husky": {
     "hooks": {
