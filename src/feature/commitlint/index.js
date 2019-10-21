@@ -7,6 +7,6 @@ exports.install = function(){
       },
     },
     filename: '.commitlintrc.json',
-    devDependencies: ['@commitlint/config-conventional', '@commitlint/cli']
+    devDependencies: ['@commitlint/config-conventional', '@commitlint/cli', 'Husky']
   }
 }

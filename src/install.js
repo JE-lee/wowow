@@ -77,6 +77,10 @@ function installCommitLint(opt){
   packageJson.husky.hooks['commit-msg'] = 'commitlint -E HUSKY_GIT_PARAMS'
 }
 
+// 
+program
+
+
 // eslint
 program
   .version('0.0.1', '-v, --vers', 'output the current version')
@@ -88,7 +92,13 @@ program
       return 
     }
     installEslint(opt)
-    installCommitLint(opt)
+  })
+
+// commit lint
+program
+  .command('commitlint')
+  .action(() => {
+    installCommitLint()
   })
 
 // mocha
@@ -106,3 +116,6 @@ program
   })
 
 program.parse(process.argv)
+// install eslint, prettier, commitlint
+installEslint(program)
+installCommitLint(program)
