@@ -42,15 +42,16 @@ function installEslint(opt){
   const { devDependencies: eslintDepend } = helper.install(opt, eslint)
   const { devDependencies: prettierDepen } = helper.install(opt, prettier)
   const dependencies = eslintDepend.concat(prettierDepen)
-  installDependencies(dependencies)
+  
   // if no .git
   if(!hasGitRepos()){
     console.log(chalk.red(`
       you shoulu init your git repository and then run 
-      npx mrm lin-staged
+      ${ bin } eslint
     `))
     return
   }else {
+    installDependencies(dependencies)
     // pre-commit
     exec('npx', ['mrm', 'lint-staged'], true)
   }
@@ -75,11 +76,8 @@ function installCommitLint(opt){
   packageJson.husky = packageJson.husky || {}
   packageJson.husky.hooks = packageJson.husky.hook || {}
   packageJson.husky.hooks['commit-msg'] = 'commitlint -E HUSKY_GIT_PARAMS'
+  helper.saveToJSON(packageJson, file)
 }
-
-// 
-program
-
 
 // eslint
 program
@@ -117,5 +115,16 @@ program
 
 program.parse(process.argv)
 // install eslint, prettier, commitlint
-installEslint(program)
-installCommitLint(program)
+
+if(!program.args.length){
+  if(!hasGitRepos()){
+    console.log(chalk.red(`
+      you shoulu init your git repository and then run 
+      ${ bin }
+    `))
+    return
+  }
+  installEslint(program)
+  installCommitLint(program)
+}
+
