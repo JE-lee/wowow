@@ -74,7 +74,7 @@ function installCommitLint(opt){
   const file = path.join(root, '/package.json')
   const packageJson = helper.getJSON(file)
   packageJson.husky = packageJson.husky || {}
-  packageJson.husky.hooks = packageJson.husky.hook || {}
+  packageJson.husky.hooks = packageJson.husky.hooks || {}
   packageJson.husky.hooks['commit-msg'] = 'commitlint -E HUSKY_GIT_PARAMS'
   helper.saveToJSON(packageJson, file)
 }
