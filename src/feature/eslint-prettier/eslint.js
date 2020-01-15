@@ -3,6 +3,7 @@ const fsync = require('fs-sync')
 const path = require('path')
 const chalk = require('chalk')
 const ignore = require('./ignore').ignore
+const helper = require('../../helper')
 
 const geneDefault = () => {
   return {
@@ -36,7 +37,7 @@ const geneDefault = () => {
     devDependencies: [
       'eslint',
       'eslint-plugin-prettier',
-      'eslint-config-prettier',
+      'eslint-config-prettier', // 解决prettier和eslint rule的冲突
       'eslint-plugin-vue' // 添加对vue的支持
     ],
     // /node_modules/* and /bower_components/* in the project root are ignored by default
@@ -65,12 +66,15 @@ exports.install = function(options = {}){
 }
 
 exports.savePrefer = function(root){
-  const file = path.join(root || process.cwd(), '/.eslintrc.json')
-  if(!fsync.isFile(file)){
-    console.log(chalk.red('can not find .eslintrc.json in the current directory.'))
+  const json = path.join(root || process.cwd(), '/.eslintrc.json')
+  const js = path.join(root || process.cwd(), '/.eslintrc.js')
+  const file = fsync.isFile(json) ? json : (fsync.isFile(js) ? js : '')
+  if(!file){
+    console.log(chalk.red('can not find .eslintrc.json or .eslintrc.js in the current directory.'))
   }
   // recover
-  fsync.copy(file, preferPath)
-  console.log(chalk.green('save your .eslintrc.js success'))
+  const config = require(file)
+  helper.saveToJSON(config, preferPath)
+  console.log(chalk.green('save your .eslintrc.json success'))
   return preferPath
 }

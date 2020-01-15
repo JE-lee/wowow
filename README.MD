@@ -27,7 +27,7 @@ wowow
 但是在一个新项目中要集成上述的特性，难免繁琐。
 
 不仅需要在命令行中手动打出大量安装包的名字，还要一个一个配置工具的rc，ignore文件。
-最关键的是因为这些工具的配置频率不是很频繁，我们不一定时刻记得我们应该安装什么，ESlint和prettier一起使用应该怎么办，commitlint的husky命令应该怎么写。这时候我们又要在网上搜索一番，就会很浪费时间，即便我们前不久就已经这么做过了。
+最关键的是因为这些工具的配置频率不是很频繁，我们不一定时刻记得我们应该安装什么，ESlint和prettier一起使用应该怎么办(ESlint 和 prettier的部分rule有冲突)，commitlint的husky命令应该怎么写。这时候我们又要在网上搜索一番，就会很浪费时间，即便我们前不久就已经这么做过了。
 我们应该专注于代码上面，而不是将起始的热情精力花费在这些重复工作上。
 
 所以这个工具提供了一个简单的命令让我们的项目轻松集成这些令人愉悦的功能。
@@ -44,5 +44,6 @@ wowow commitlint
 
 ## TODO
 * [x] 更适合的prettier配置
-* [-] eslint save prefer支持.eslintrc.js文件
+* [x] eslint save prefer支持.eslintrc.js文件
 * [-] commitlint模块增加changelog scripts 脚本
+* [-] 支持TypeScript
