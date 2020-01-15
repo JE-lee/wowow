@@ -41,3 +41,8 @@ wowow eslint
 # 只安装commitlint
 wowow commitlint
 ```
+
+## TODO
+* [x] 更适合的prettier配置
+* [-] eslint save prefer支持.eslintrc.js文件
+* [-] commitlint模块增加changelog scripts 脚本

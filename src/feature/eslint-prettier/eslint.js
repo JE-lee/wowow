@@ -16,15 +16,15 @@ const geneDefault = () => {
       parserOptions: {
         // set to "script" (default) or "module" if your code is in ECMAScript modules.
         sourceType: 'module',
-        ecmaVersion: 2018
+        ecmaVersion: 2018,
         // parser使用default, 只有在使用jsx，flow，或者ts的时候才使用babel-eslint
         // parser: 'babel-eslint'
       },
       // 后面覆盖前面
       // eslint:standard == eslint-config-standard
       // eslint configuration https://eslint.org/docs/user-guide/configuring
-      extends: ['eslint:recommended', 'eslint-config-prettier'],
-      plugins: ['prettier'],
+      extends: ['eslint:recommended', 'plugin:vue/essential','eslint-config-prettier'],
+      plugins: [ 'vue','prettier'],
       // plugins: ['vue'],
       rules: {
         'prettier/prettier': ['error'],
@@ -36,7 +36,8 @@ const geneDefault = () => {
     devDependencies: [
       'eslint',
       'eslint-plugin-prettier',
-      'eslint-config-prettier'
+      'eslint-config-prettier',
+      'eslint-plugin-vue' // 添加对vue的支持
     ],
     // /node_modules/* and /bower_components/* in the project root are ignored by default
     ignore,
@@ -48,7 +49,7 @@ const geneDefault = () => {
 const preferPath = path.join(__dirname, '/.eslint-prefer.json')
 
 exports.install = function(options = {}){
-  const { mocha = false, node = false, browser = false } = options
+  const { mocha = false, node = false, browser = true } = options
   let eslint = geneDefault()
   if(fsync.isFile(preferPath)){
     eslint.config = require(preferPath)
