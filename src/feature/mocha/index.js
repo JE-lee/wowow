@@ -1,5 +1,5 @@
 exports.install = function(){
   return {
-    devDependencies: ['mocha', 'chai']
+    devDependencies: ['commitizen']
   }
 }

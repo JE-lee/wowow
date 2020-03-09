@@ -32,6 +32,14 @@ wowow
 
 所以这个工具提供了一个简单的命令让我们的项目轻松集成这些令人愉悦的功能。
 
+## feature
+- commitizen
+集成[commitizen](https://github.com/commitizen/cz-cli#making-your-repo-commitizen-friendly)特性
+```bash
+wowow commitizen
+```
+然后使用npm run commit 或者 yarn commit 代替 git commit
+
 ## advanced
 ```bash
 # 安装全部特性
@@ -45,8 +53,12 @@ wowow commitlint
 ## TODO
 * [x] 更适合的prettier配置
 * [x] eslint save prefer支持.eslintrc.js文件
-* [-] <u>commitlint模块增加changelog scripts 脚本</u>
+* [-] ~~commitlint模块增加changelog scripts 脚本~~
 * [-] 支持TypeScript
 * [-] 优化help的命令说明
+* [-] 覆盖原来项目的eslint 配置
 
 * [-] github actions 发布 + changelog
+* [] 快速生成jsconfig.json
+* [] commitizen支持
+* [] commitizen 多仓库

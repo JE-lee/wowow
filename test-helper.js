@@ -22,7 +22,9 @@ function install(feat, name){
       removes.push(filename)
       
       const json = helper.getJSON(path.join(root, `/${filename}`))
-      expect(config).to.deep.equal(json)
+      if(json){
+        expect(config).to.deep.equal(json)
+      }
       if(ignoreName){
         removes.push(ignoreName)
         // 比较ignore

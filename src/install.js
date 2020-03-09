@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 const program = require('commander')
-const spawn = require('cross-spawn')
 const helper = require('./helper')
 const path = require('path')
 const fsync = require('fs-sync')
@@ -11,64 +10,53 @@ const prettier = require('./feature/eslint-prettier/prettier')
 const mocha = require('./feature/mocha/index')
 const debugMocha = require('./feature/mocha/vscode-debug')
 const commitLint = require('./feature/commitlint/index')
+const commitizen = require('./feature/commitizen/index')
 
 const bin = 'wowow'
 
-function exec(command, args, isSync = false){
-  return (isSync ? spawn.sync : spawn)(command, args, { stdio: 'inherit'})
+function warn(msg){
+  console.log(chalk.red(msg))
 }
 
-function retry(commands){
-  for(let i = 0; i < commands.length; i++){
-    let command = commands[i].split(' ')
-    const result = exec(command[0], command.slice(1), true)
-    if(!result.error) return result
-  }
-  return false
-}
-
-function installDependencies(dependencies){
-  retry([
-    `yarn add ${ dependencies.join(' ')} --dev`,
-    `npm install ${ dependencies.join(' ') } --save-dev`
-  ])
-}
-
-function hasGitRepos(){
+function hasGitRepos() {
   return fsync.isDir(path.join(process.cwd(), '/.git'))
 }
 
-function installEslint(opt){
+function installEslint(opt) {
   const { devDependencies: eslintDepend } = helper.install(opt, eslint)
   const { devDependencies: prettierDepen } = helper.install(opt, prettier)
   const dependencies = eslintDepend.concat(prettierDepen)
-  
   // if no .git
-  if(!hasGitRepos()){
-    console.log(chalk.red(`
+  if (!hasGitRepos()) {
+    warn(`
       you shoulu init your git repository and then run 
-      ${ bin } eslint
-    `))
+      ${ bin} eslint
+    `)
+    return
+  } else if (!helper.isNPMProject()) {
+    warn('not npm project')
     return
   }else {
-    installDependencies(dependencies)
+    helper.installDependencies(dependencies)
     // pre-commit
-    exec('npx', ['mrm', 'lint-staged'], true)
+    // more information about mrm lint-staged 
+    // https://github.com/sapegin/mrm/tree/master/packages/mrm-task-lint-staged
+    helper.exec('npx', ['mrm', 'lint-staged'], true)
   }
 }
 
 // should install husky first
-function installCommitLint(opt){
+function installCommitLint(opt) {
   // if no git repos
-  if(!hasGitRepos()){
-    console.log(chalk.red(`
+  if (!hasGitRepos()) {
+    warn(`
       you shoulu init your git repository and then run 
-      ${ bin } commitlint
-    `))
+      ${ bin} commitlint
+    `)
     return
   }
   const { devDependencies } = helper.install(opt, commitLint)
-  installDependencies(devDependencies)
+  helper.installDependencies(devDependencies)
   // write husky hook
   const root = process.cwd()
   const file = path.join(root, '/package.json')
@@ -79,15 +67,24 @@ function installCommitLint(opt){
   helper.saveToJSON(packageJson, file)
 }
 
+function installCommitizen(opt) {
+  if (helper.isNPMProject()) {
+    const { devDependencies } = helper.install(opt, commitizen)
+    helper.installDependencies(devDependencies)
+  } else {
+    warn('not a npm project')
+  }
+}
+
 // eslint
 program
   .version('0.0.1', '-v, --vers', 'output the current version')
   .command('eslint')
   .option('-s, --save', 'save your prefer eslint style')
   .action((opt) => {
-    if(opt.save){
+    if (opt.save) {
       eslint.savePrefer()
-      return 
+      return
     }
     installEslint(opt)
   })
@@ -95,9 +92,7 @@ program
 // commit lint
 program
   .command('commitlint')
-  .action(() => {
-    installCommitLint()
-  })
+  .action(() => installCommitLint())
 
 // mocha
 program
@@ -105,23 +100,48 @@ program
   .option('-f, --file, <file>', 'add a vscode debug configuration')
   .action((opt) => {
     // vscode mocha debug configuration
-    if(opt.file){
+    if (opt.file) {
       debugMocha.install({ file: opt.file })
-      return 
+      return
     }
     const { devDependencies } = helper.install(opt, mocha)
-    installDependencies(devDependencies)
+    helper.installDependencies(devDependencies)
   })
+
+// commitizen
+program.command('commitizen').action(opt => {
+  if(!hasGitRepos()){
+    warn('not git repo')
+    return
+  }
+  installCommitizen(opt)
+  // make the repo Commitizenn-friendly
+  if(helper.isYarnUsed() || helper.isYarnAble()){
+    helper.exec('npx', 'commitizen init cz-conventional-changelog --yarn --dev --exact', true)
+  }else {
+    helper.exec('npx', 'commitizen init cz-conventional-changelog --save-dev --save-exact', true)
+  }
+  // add npm script
+  const file = path.join(process.cwd(), '/package.json')
+  const pck = helper.getJSON(file)
+  if(!pck){
+    warn('not a valid package.json')
+  }
+  pck.scripts = pck.scripts || {}
+  pck.scripts['commit'] = 'npx git-cz'
+  helper.saveToJSON(pck, file)
+  console.log(chalk.green('now you can use npm run commit when running git commit'))
+})
 
 program.parse(process.argv)
 // install eslint, prettier, commitlint
 
-if(!program.args.length){
-  if(!hasGitRepos()){
-    console.log(chalk.red(`
+if (!program.args.length) {
+  if (!hasGitRepos()) {
+    warn(`
       you shoulu init your git repository and then run 
-      ${ bin }
-    `))
+      ${ bin}
+    `)
     return
   }
   installEslint(program)
