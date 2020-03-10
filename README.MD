@@ -51,8 +51,8 @@ wowow commitlint
 ```
 
 ## TODO
-* [x] 更适合的prettier配置
-* [x] eslint save prefer支持.eslintrc.js文件
+* [-] 更适合的prettier配置
+* [-] eslint save prefer支持.eslintrc.js文件
 * [-] ~~commitlint模块增加changelog scripts 脚本~~
 * [-] 支持TypeScript
 * [-] 优化help的命令说明
@@ -60,5 +60,7 @@ wowow commitlint
 
 * [-] github actions 发布 + changelog
 * [] 快速生成jsconfig.json
-* [] commitizen支持
+* [-] commitizen支持
 * [] commitizen 多仓库
+
+* [] 重构
