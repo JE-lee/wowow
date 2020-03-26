@@ -11,6 +11,7 @@ const mocha = require('./feature/mocha/index')
 const debugMocha = require('./feature/mocha/vscode-debug')
 const commitLint = require('./feature/commitlint/index')
 const commitizen = require('./feature/commitizen/index')
+const typescriptEslint = require('./feature/typescript-eslint/index')
 
 const bin = 'wowow'
 
@@ -78,7 +79,7 @@ function installCommitizen(opt) {
 
 // eslint
 program
-  .version('0.0.1', '-v, --vers', 'output the current version')
+  .version('1.2.0', '-v, --vers', 'output the current version')
   .command('eslint')
   .option('-s, --save', 'save your prefer eslint style')
   .action((opt) => {
@@ -132,6 +133,23 @@ program.command('commitizen').action(opt => {
   helper.saveToJSON(pck, file)
   console.log(chalk.green('now you can use npm run commit when running git commit'))
 })
+
+// typescript
+program.command('typescript-eslint')
+  .action(() => {
+    const { devDependencies, eslintrc, prettierrc} = typescriptEslint
+    if (helper.isNPMProject()) {
+      helper.installDependencies(devDependencies)
+    } else {
+      warn('not a npm project')
+    }
+    [eslintrc, prettierrc].forEach(filePath => {
+      const target = filePath.replace('_', '.')
+      const fileName = path.parse(target).base
+      fsync.copy(filePath, path.join(process.cwd(), `/${fileName}`))
+    })
+    console.log(chalk.green('typescript-eslint is ready'))
+  })
 
 program.parse(process.argv)
 // install eslint, prettier, commitlint

@@ -40,6 +40,30 @@ wowow commitizen
 ```
 然后使用npm run commit 或者 yarn commit 代替 git commit
 
+## typescript-eslint
+鉴于TSlint的开发者已经放弃对它的维护，转而投奔typescript-eslint的怀抱，所以typescript-eslint已经成为事实上的typescript code的lintter工具。
+
+### **typescript-eslint 和babel-eslint的区别**
+babel-eslint在搭配typescript parser的情况下，可以完成对typecript 源码的lint，但是typescript-eslint 更强大，可以基于类型信息自定义校验规则。
+
+### 使用
+1. 
+```bash
+npm i wowow -g
+wowow typescript-eslint
+```
+2. 配置vscode setting.json
+```json
+{
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ]
+}
+```
+
 ## advanced
 ```bash
 # 安装全部特性
