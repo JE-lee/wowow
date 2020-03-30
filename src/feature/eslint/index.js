@@ -1,10 +1,4 @@
 const helper = require('../../helper')
-const dependencies = [
-  'cross-env',
-  'husky',
-  'lint-staged',
-  'eslint'
-]
 
 const pck = (origin) => {
   origin.husky = origin.husky || {}
@@ -27,11 +21,16 @@ exports.install = async () => {
     helper.warning('not a git repository')
     return
   }
-  helper.installDependencies(dependencies)
+  helper.installDependencies(['eslint'])
   helper.exec('npx', 'eslint --init', true)
+  helper.installDependencies([
+    'cross-env',
+    'husky',
+    'lint-staged'
+  ])
   // write package.json
   if (helper.writeToPck(pck)) {
-    helper.success('install success!!!')
+    helper.success('install success!!! now you should add eslintrc file to the git repo for lint-staged')
   } else {
     helper.warning('can not write scripts to package.json')
   }
