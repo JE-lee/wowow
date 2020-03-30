@@ -19,9 +19,19 @@ async function assgnToEslint(cwd = helper.cwd) {
   if(!fsync.isFile(eslintrcPath)){
     return false
   }
+  const push = (arr, item) => {
+    if(!arr.includes(item)){
+      arr.push(item)
+    }
+  }
   const eslintrc = require(eslintrcPath)
-  eslintrc.extends.push['eslint-config-prettier']
-  eslintrc.plugins.push['prettier']
+  eslintrc.extends = eslintrc.extends || []
+  push(eslintrc.extends,'eslint-config-prettier')
+  eslintrc.plugins = eslintrc.plugins || []
+  push(eslintrc.plugins, 'prettier')
+  // rules
+  eslintrc.rules = eslintrc.rules || {}
+  eslintrc.rules['prettier/prettier'] = ['error']
   await fsExtra.writeFile(eslintrcPath, `module.exports = ${JSON.stringify(eslintrc, null, 2)}`)
   return true
 }

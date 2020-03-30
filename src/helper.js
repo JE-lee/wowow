@@ -94,10 +94,11 @@ function install(options, feat, root = (process.cwd())){
   }
 }
 
-async function copyDir(dir, dest){
+async function copyDir(dir, dest = cwd){
   const paths = await globby('*', { cwd: dir })
   const result = []
   paths.forEach(filePath => {
+    filePath = path.join(dir, `/${filePath}`)
     const pobj = path.parse(filePath)
     pobj.name = pobj.name.replace('_', '.')
     const target = path.join(dest, `/${pobj.name}${pobj.ext}`)
