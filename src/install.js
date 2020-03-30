@@ -5,8 +5,8 @@ const path = require('path')
 const fsync = require('fs-sync')
 const chalk = require('chalk')
 
-const eslint = require('./feature/eslint-prettier/eslint')
-const prettier = require('./feature/eslint-prettier/prettier')
+const eslint = require('./feature/eslint')
+const prettier = require('./feature/prettier')
 const mocha = require('./feature/mocha/index')
 const debugMocha = require('./feature/mocha/vscode-debug')
 const commitLint = require('./feature/commitlint/index')
@@ -79,16 +79,15 @@ function installCommitizen(opt) {
 
 // eslint
 program
-  .version('1.2.0', '-v, --vers', 'output the current version')
+  .version('2.0.0', '-v, --vers', 'output the current version')
   .command('eslint')
   .option('-s, --save', 'save your prefer eslint style')
-  .action((opt) => {
-    if (opt.save) {
-      eslint.savePrefer()
-      return
-    }
-    installEslint(opt)
-  })
+  .action(() => eslint.install())
+
+// prettier
+program
+  .command('prettier')
+  .action(() => prettier.install())
 
 // commit lint
 program
