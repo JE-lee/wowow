@@ -119,18 +119,7 @@ program.command('commitizen').action(opt => {
 // typescript
 program.command('typescript-eslint')
   .action(() => {
-    const { devDependencies, eslintrc, prettierrc} = typescriptEslint
-    if (helper.isNPMProject()) {
-      helper.installDependencies(devDependencies)
-    } else {
-      warn('not a npm project')
-    }
-    [eslintrc, prettierrc].forEach(filePath => {
-      const target = filePath.replace('_', '.')
-      const fileName = path.parse(target).base
-      fsync.copy(filePath, path.join(process.cwd(), `/${fileName}`))
-    })
-    console.log(chalk.green('typescript-eslint is ready'))
+    typescriptEslint.install()
   })
 
 program.parse(process.argv)
