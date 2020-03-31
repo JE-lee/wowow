@@ -7,7 +7,7 @@ const pck = (origin) => {
   origin.husky.hooks['pre-commit'] = 'lint-staged'
   // only lint the files that will be committed
   origin['lint-staged'] = {
-    '*.{js, vue, jsx}': [
+    '*.{js, vue, jsx, ts, tsx}': [
       'cross-env NODE_ENV=production eslint --fix --quiet', // remove --cache, due to the lint-staged
     ]
   }

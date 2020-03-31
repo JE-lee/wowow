@@ -20,7 +20,7 @@ const pck = (origin) => {
   if(origin.dependencies['lint-staged'] || origin.devDependencies['lint-staged']){
     origin['lint-staged'] = origin['lint-staged'] || {}
     // 所有符合js, jsx, vue的规则都加上prettier 脚本
-    const spec = ['*.js', '*.jsx', '*vue']
+    const spec = ['*.js', '*.jsx', '*.vue', '*.ts', '*.tsx']
     const prettier = 'prettier --write'
     for(let [key, rule] of Object.entries(origin['lint-staged'])){
       if(spec.some(str => micromatch.isMatch(str, key))){
