@@ -12,7 +12,8 @@ const dependencies = [
 
 const pck = (origin) => {
   origin.scripts = origin.scripts || {}
-  origin.scripts['prettier'] = 'prettier . --write'
+  // 不要在prettier之后指定文件名，因为lint-staged会自动在prettier命令之后加入已经加入commit index的文件
+  origin.scripts['prettier'] = 'prettier --write'
   origin.dependencies = origin.dependencies || {}
   origin.devDependencies = origin.devDependencies || {}
   if(origin.dependencies['lint-staged'] || origin.devDependencies['lint-staged']){
@@ -73,7 +74,8 @@ exports.install = async () => {
   await helper.copyDir(path.join(__dirname, '/tpl'))
   // write package.json
   if (helper.writeToPck(pck)) {
-    helper.success('install success!!!')
+    // 更新eslintrc.js 之后，必须将先提高eslintrc.js 或者加入commit index
+    helper.success('install success!!!, now you should add the eslintrc to the git commit index')
   } else {
     helper.warning('can not write scripts to package.json')
   }
