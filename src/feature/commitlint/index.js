@@ -2,6 +2,14 @@ const helper = require('../../helper')
 const dependencies = ['@commitlint/config-conventional', '@commitlint/cli', 'husky']
 const path = require('path')
 exports.install = function(){
+  if (!helper.isNPMProject()) {
+    helper.warning('not a npm project')
+    return
+  }
+  if (!helper.hasGitRepos()) {
+    helper.warning('not a git repository')
+    return
+  }
   helper.installDependencies(dependencies)
   // copy file 
   helper.copyDir(path.join(__dirname, '/tpl'))
