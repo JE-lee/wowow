@@ -1,5 +1,6 @@
 const helper = require('../../helper')
-
+const path = require('path')
+const globby = require('globby')
 const pck = (origin) => {
   origin.husky = origin.husky || {}
   origin.husky.hooks = origin.husky.hooks || {}
@@ -12,6 +13,16 @@ const pck = (origin) => {
   }
 }
 
+function isEslintReady(cwd = helper.cwd){
+  const pck = helper.getJSON(path.join(cwd, '/package.json'))
+  if(!pck) return false
+  pck['dependencies'] = pck['dependencies'] || {}
+  pck['devDependencies'] = pck['devDependencies'] || {}
+  if(!pck['dependencies'].eslint && !pck['devDependencies'].eslint) return false
+  const files = globby.sync('*eslint*', { cwd, dot: true })
+  return files.length > 0
+}
+
 exports.install = async () => {
   if (!helper.isNPMProject()) {
     helper.warning('not a npm project')
@@ -21,8 +32,11 @@ exports.install = async () => {
     helper.warning('not a git repository')
     return
   }
+  // if eslint has ready
+  if(isEslintReady()) return 
   helper.installDependencies(['eslint'])
   helper.exec('npx', 'eslint --init', true)
+  // eslint must be ready before installng lint-staged
   helper.installDependencies([
     'cross-env',
     'husky',
@@ -35,3 +49,5 @@ exports.install = async () => {
     helper.warning('can not write scripts to package.json')
   }
 }
+
+exports.isEslintReady = isEslintReady
