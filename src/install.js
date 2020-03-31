@@ -47,25 +47,8 @@ function installEslint(opt) {
 }
 
 // should install husky first
-function installCommitLint(opt) {
-  // if no git repos
-  if (!hasGitRepos()) {
-    warn(`
-      you shoulu init your git repository and then run 
-      ${ bin} commitlint
-    `)
-    return
-  }
-  const { devDependencies } = helper.install(opt, commitLint)
-  helper.installDependencies(devDependencies)
-  // write husky hook
-  const root = process.cwd()
-  const file = path.join(root, '/package.json')
-  const packageJson = helper.getJSON(file)
-  packageJson.husky = packageJson.husky || {}
-  packageJson.husky.hooks = packageJson.husky.hooks || {}
-  packageJson.husky.hooks['commit-msg'] = 'commitlint -E HUSKY_GIT_PARAMS'
-  helper.saveToJSON(packageJson, file)
+function installCommitLint() {
+  commitLint.install()
 }
 
 function installCommitizen(opt) {
