@@ -2,6 +2,8 @@ const helper = require('../../helper')
 const path = require('path')
 const fsExtra = require('fs-extra')
 const fsync = require('fs-sync')
+const micromatch = require('micromatch')
+const _ = require('lodash')
 const dependencies = [
   'prettier',
   'eslint-plugin-prettier', // prettier的规则
@@ -11,10 +13,29 @@ const dependencies = [
 const pck = (origin) => {
   origin.scripts = origin.scripts || {}
   origin.scripts['prettier'] = 'prettier . --write'
+  origin.dependencies = origin.dependencies || {}
+  origin.devDependencies = origin.devDependencies || {}
+  if(origin.dependencies['lint-staged'] || origin.devDependencies['lint-staged']){
+    origin['lint-staged'] = origin['lint-staged'] || {}
+    // 所有符合js, jsx, vue的规则都加上prettier 脚本
+    const spec = ['*.js', '*.jsx', '*vue']
+    const prettier = 'prettier . --write'
+    for(let [key, rule] of Object.entries(origin['lint-staged'])){
+      if(spec.some(str => micromatch.isMatch(str, key))){
+        if(_.isString(rule)){
+          rule = [rule, prettier]
+        }else if (_.isArray(rule)){
+          rule.unshift(prettier)
+        }
+        origin['lint-staged'][key] = rule
+      }
+    }
+  }
 }
 
 // eslint-disable-next-line no-unused-vars
 async function assgnToEslint(cwd = helper.cwd) {
+  // eslint rc
   const eslintrcPath = path.join(cwd, '/.eslintrc.js')
   if(!fsync.isFile(eslintrcPath)){
     return false
@@ -33,6 +54,7 @@ async function assgnToEslint(cwd = helper.cwd) {
   eslintrc.rules = eslintrc.rules || {}
   eslintrc.rules['prettier/prettier'] = ['error']
   await fsExtra.writeFile(eslintrcPath, `module.exports = ${JSON.stringify(eslintrc, null, 2)}`)
+  // lint-staged
   return true
 }
 
@@ -56,3 +78,5 @@ exports.install = async () => {
     helper.warning('can not write scripts to package.json')
   }
 }
+
+exports.pck = pck

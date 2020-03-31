@@ -131,6 +131,7 @@ function writeToPck(pck, dest = cwd){
   }else{
     Object.assign(json, pck)
   }
+  console.log('json', json)
   return saveToJSON(json, file)
 }
 
