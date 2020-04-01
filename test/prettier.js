@@ -6,8 +6,8 @@ describe('#prettier', function(){
   it('#pck', function(){
     const pck = helper.getJSON(path.resolve(__dirname, '../package.json'))
     pck['dependencies']['lint-staged'] = 'latest'
-    const eslintScript = 'eslint . -- fix'
-    const prettierScript = 'prettier . --write'
+    const eslintScript = 'eslint --fix'
+    const prettierScript = 'prettier --write'
     const expectScript = [prettierScript, eslintScript]
     pck['lint-staged'] = {
       '*.js': eslintScript,

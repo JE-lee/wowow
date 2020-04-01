@@ -25,7 +25,7 @@ const pck = (origin) => {
     for(let [key, rule] of Object.entries(origin['lint-staged'])){
       if(spec.some(str => micromatch.isMatch(str, key))){
         if(_.isString(rule)){
-          rule = [rule, prettier]
+          rule = [prettier, rule]
         }else if (_.isArray(rule)){
           rule.unshift(prettier)
         }
@@ -37,7 +37,7 @@ const pck = (origin) => {
 
 async function getEslintRc(cwd){
   const files = await globby('*eslint*', { cwd, dot: true})
-  if(!files.length) return null
+  if(!files.length) return {}
   const file = files[0]
   const ext = path.parse(file).ext.substring(1)
   const filePath = path.join(cwd, `/${file}`)
@@ -53,7 +53,7 @@ async function getEslintRc(cwd){
       eslintrc: yaml.parse(yml)
     }
   }else {
-    return null
+    return {}
   }
 }
 

@@ -134,6 +134,20 @@ function writeToPck(pck, dest = cwd){
   return saveToJSON(json, file)
 }
 
+function isPackageReady(packageName, cw = cwd){
+  const pck = getJSON(path.join(cw, '/package.json'))
+  if(!pck) return false
+  pck['dependencies'] = pck['dependencies'] || {}
+  pck['devDependencies'] = pck['devDependencies'] || {}
+  if(!pck['dependencies'][packageName] && !pck['devDependencies'][packageName]) return false
+  return true
+}
+function isEslintReady(cw = cwd){
+  if(!isPackageReady('eslint', cw)) return false
+  const files = globby.sync('*eslint*', { cw, dot: true })
+  return files.length > 0
+}
+
 module.exports = {
   saveToJSON,
   getJSON,
@@ -149,5 +163,7 @@ module.exports = {
   success,
   warning,
   writeToPck,
-  cwd
+  cwd,
+  isEslintReady,
+  isPackageReady
 }
