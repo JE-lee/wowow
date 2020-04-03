@@ -29,12 +29,18 @@ npm install wowow -g
 ```
 ## usage
 ```bash
-wowow
+# 在新项目上同时安装eslint + prettier + lint-staged
+wowow eslint
+# 在已经有eslint的项目上安装prettier 和 lint-staged
+wowow lint-staged
+wowow prettier
+
+# 在新项目上面安装commitlint
+wowow commitlint
+
+# 在新项目上面安装typescript-eslint
+wowow typescript-eslint
 ```
-执行wowow之后，你的项目就已经自动集成了eslint + prettier + lint-staged + commitlint + commitizen，之后，就可以专注在代码上面了。
-
-你也可以分别集成上述的特性。
-
 ## feature
 
 ### eslint 
@@ -45,6 +51,7 @@ wowow eslint
 1. 安装eslint
 2. 执行`npx eslint --init`
 3. 安装pre-commit钩子和lint-staged脚本
+4. 安装prettier, 自动解决eslint 和 prettier的规则冲突。
 
 ### prettier
 ```bash
@@ -52,7 +59,7 @@ wowow prettier
 ```
 在这个命令中，wowow做了以下的事情：
 1. 安装prettier
-2. 安装eslint-config-prettier, eslint-plugins-prettier, 更新eslintrc文件， 解决eslint和prettier一起使用的rules冲突。
+2. 安装eslint-config-prettier, eslint-plugins-prettier, 更新eslintrc文件， 自动解决eslint和prettier一起使用的rules冲突。
 3. 更新lint-staged脚本
 
 ### commitlint
@@ -62,6 +69,11 @@ wowow commitlint
 在这个命令中，wowow做了以下的事情：
 1. 安装必要的包
 2. 安装pre-commit 钩子
+3. 自动安装commitizen/cli 工具。
+
+你可以在需要使用`git commit` 的地方用 `yarn commit`代替，将会调用commitizen/cli工具帮助你提交一份合乎conventional 规范的commit信息.
+
+同时你可以使用`yarn changlog` 来从你的commit信息生成项目的changelog 信息。
 
 ### commitizen
 集成[commitizen](https://github.com/commitizen/cz-cli#making-your-repo-commitizen-friendly)特性
@@ -91,4 +103,7 @@ wowow typescript-eslint
   ]
 }
 ```
+
+## TODO
+- stand-dard version
 
