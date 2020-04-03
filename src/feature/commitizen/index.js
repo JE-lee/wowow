@@ -12,7 +12,7 @@ exports.install = async function(){
     return false
   }
   // install dependencies
-  helper.install(devDependencies)
+  helper.installDependencies(devDependencies)
   // make the repo Commitizenn-friendly
   if (helper.isYarnUsed() || helper.isYarnAble()) {
     helper.exec('npx', 'commitizen init cz-conventional-changelog --yarn --dev --exact', true)
