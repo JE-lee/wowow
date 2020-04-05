@@ -1,7 +1,7 @@
 const helper = require('../../helper')
 const path = require('path')
 
-const devDependencies = ['husky', 'conventional-changelog-cli']
+const devDependencies = ['husky', 'conventional-changelog-cli', 'standard-version']
 exports.install = async function(){
   if (!helper.isNPMProject()) {
     helper.warning('not a npm project')
@@ -23,8 +23,9 @@ exports.install = async function(){
   const pck = helper.getJSON(file)
   pck.scripts = pck.scripts || {}
   pck.scripts['commit'] = 'npx git-cz'
-  pck.scripts['changelog:first'] = 'conventional-changelog -p angular -i CHANGELOG.md -s -r 0'
-  pck.scripts['changelog'] = 'conventional-changelog -p angular -i CHANGELOG.md -s'
+  // pck.scripts['changelog:first'] = 'conventional-changelog -p angular -i CHANGELOG.md -s -r 0'
+  pck.scripts['changelog'] = 'standard-version && conventional-changelog -p angular -i CHANGELOG.md -s -r 0'
+  
   // husky hooks
   /* pck.husky = pck.husky || {}
   pck.husky.hooks = pck.husky.hooks || {}
