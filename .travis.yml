@@ -10,7 +10,7 @@ script:
 deploy:
   provider: npm
   email: 1245183029@qq.com
-  api_key:
+  skip_cleanup: true
     secure: OXEFFIUEVityBW3GYcZqp0zKZM3ky0wDLp/Ie+kkNDiQmNcuoa4GhCVPj2OWRmqWM6Kxy2HBk/2Mdk6q8710HHBXLPzkJbbmfDRzDqzhsOzYxkL0ro7BgWNOlLREh7ex+J/znOvlRcr/hvNunT1wVGdpCmg/ZFDkNk0m9fEkuNYK2cQXkVZp8hURkfP7R/Ub8L75s/CdJ9z2AuRbVtwf0pAZ9phvqatWqDsXMaR1zICYf8o/Elq7Ujhag+G7djW5Zk6owAzIfuj86GvVwY6KEFdePw2JfCZEg9WUii2c7UQrLHwR67+5OcmUc+jQT2+MyA3ErXBQDsP+N5iPanXBdfLJK2F52nqJgEpXEa8CNDFMzUukBFiB8doDJMaPJSfk1FmCi4ejTr4EdfXkM9LiwncDT551+CiuxQbTWm0snZqXExPDl9T5No1hYJq7Is9khJw4tc+Vfxo6nka+/bZYqlUScc6nUrChreYBYV/5odNyll+ef9nZ8vHglQsroOuR7ghb9pKDXaBCqgg09P1JK7LTEUfuChHcPOVlZ4XQzLB4jMtxC9Y/tzoscH3HKWk8bgIQ2/AALRucmwD6NKhsWYwVTwejzho37kxRG5xVAat8q7O/t2mrvOfYXOATPefZurPDT5NBmtp4Kt3pNY1ZUzPPNvR37fQoWNZF+Q4PP34=
 after_deploy:
   - git config user.name "${U_NAME}"
