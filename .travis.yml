@@ -6,7 +6,8 @@ branches:
   - master  
 script: 
   - yarn test
-  - yarn changelog  
+  - git checkout master
+  - yarn changelog 
 deploy:
   provider: npm
   email: 1245183029@qq.com
