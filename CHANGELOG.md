@@ -1,3 +1,9 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [2.6.1](https://github.com/JE-lee/wowow/compare/v2.1.0...v2.6.1) (2020-04-05)
+
 # [2.6.0](https://github.com/JE-lee/wowow/compare/6d69e699501b39046109fed15f12245281bc5f2e...v2.6.0) (2020-04-05)
 
 
@@ -45,6 +51,3 @@
 * 安装前检查eslint是否已经安装，避免重复安装 ([0512515](https://github.com/JE-lee/wowow/commit/0512515ba5d6dac12fa1e342ef2b569ebd8b97c9))
 * 支持写入prettier的规则到eslintrc.js, eslintrc.yml, eslintrc.json中 ([ccb9568](https://github.com/JE-lee/wowow/commit/ccb956813c0644e1c01bf068818773f8991a46d2))
 * 更合适的prettier配置，添加对vue文件的eslint支持 ([c763fa9](https://github.com/JE-lee/wowow/commit/c763fa92b9f1d9554019c76e79cbcf37e60d2ed1))
-
-
-
