@@ -1,3 +1,7 @@
+## [2.7.1](https://github.com/JE-lee/wowow/compare/v2.7.0...v2.7.1) (2020-04-07)
+
+
+
 # [2.7.0](https://github.com/JE-lee/wowow/compare/v2.1.0...v2.7.0) (2020-04-07)
 
 
