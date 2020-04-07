@@ -2,6 +2,13 @@
 一个给你的javascript项目快速集成ESlint, prettier, lint-staged,commitlint等js开发辅助工具的的命令行应用。
 目的是帮助js开发者**快速拥有**一个舒适的，规范的编程环境。
 
+## 功能
+- 一键安装eslint,prettier, 自动解决eslint 和 prettier一起使用的冲突
+- 集成lint-staged，自动在commit之前进行增量的eslint和prettier检验和修复
+- 集成commitlint,自动检查commit message是否符合[conventional message 规范](https://www.conventionalcommits.org/en/v1.0.0-beta.2/)
+- 提供yarn commit命令代替git commit,以交互方式帮助你写出conventional message 规范的commit message
+- 提供yarn changelog, 在发布之前，自动打tag和生成changelog
+
 ## why
 在javascript项目中，
 * 使用ESlint可以帮助我们减少语法错误
@@ -29,29 +36,19 @@ npm install wowow -g
 ```
 ## usage
 ```bash
-# 在新项目上同时安装eslint + prettier + lint-staged
-wowow eslint
-# 在已经有eslint的项目上安装prettier 和 lint-staged
-wowow lint-staged
+# 在新项目上安装所有特性, 推荐
+wowow
+
+# 在已经有eslint的项目上安装prettier，这会自动为你解决eslint和prettier的规则冲突。
 wowow prettier
 
 # 在新项目上面安装commitlint
 wowow commitlint
 
-# 在新项目上面安装typescript-eslint
+# 在新项目上面快速安装typescript-eslint
 wowow typescript-eslint
 ```
 ## feature
-
-### eslint 
-```bash
-wowow eslint
-```
-在这个命令中，wowow做了以下的事情：
-1. 安装eslint
-2. 执行`npx eslint --init`
-3. 安装pre-commit钩子和lint-staged脚本
-4. 安装prettier, 自动解决eslint 和 prettier的规则冲突。
 
 ### prettier
 ```bash
@@ -73,14 +70,14 @@ wowow commitlint
 
 你可以在需要使用`git commit` 的地方用 `yarn commit`代替，将会调用commitizen/cli工具帮助你提交一份合乎conventional 规范的commit信息.
 
-同时你可以使用`yarn changlog` 来从你的commit信息生成项目的changelog 信息。
+#### 关于yarn changelog命令
+在这个命令中，工具自动为你做了以下的事情：
+1. 使用[standard-version](https://github.com/conventional-changelog/standard-version) 根据你的和最新的tag之间的commit 信息自动升级项目的package.json的version
+2. 使用conventional-changelog/cli 自动生成changelog
+3. 自动提交一个类似于docs(changelog.md): update changelog" 的提交信息
 
-### commitizen
-集成[commitizen](https://github.com/commitizen/cz-cli#making-your-repo-commitizen-friendly)特性
-```bash
-wowow commitizen
-```
-然后使用npm run commit 或者 yarn commit 代替 git commit
+**建议在发布之前用这个命令更新版本和生成changelog**
+
 
 ###  typescript-eslint
 鉴于TSlint的开发者已经放弃对它的维护，转而投奔typescript-eslint的怀抱，所以typescript-eslint已经成为事实上的typescript code的lintter工具。
@@ -104,6 +101,4 @@ wowow typescript-eslint
 }
 ```
 
-## TODO
-- stand-dard version
 
