@@ -11,7 +11,6 @@ const commitizen = require('./feature/commitizen/index')
 const typescriptEslint = require('./feature/typescript-eslint/index')
 
 const pck = require('../package.json')
-
 program
   .version(`${pck.version}`, '-v, --vers', 'output the current version')
   // eslint
@@ -52,3 +51,25 @@ program
 
 program.parse(process.argv)
 
+async function installAll() {
+  let result = true
+  if (!helper.isNPMProject()) {
+    helper.warning('not a npm project')
+    result = false
+  }
+  if (!helper.hasGitRepos()) {
+    helper.warning('not a git repository')
+    result = false
+  }
+  if(!result) return 
+  await eslint.install()
+  await prettier.install()
+  await commitLint.install()
+  helper.success('all of eslint, prettier, lint-staged, commitlint has installed successfulley')
+}
+
+// wowow command
+if (process.argv.length <= 2) {
+  // install all 
+  installAll()
+}

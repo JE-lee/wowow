@@ -96,11 +96,11 @@ async function assgnToEslint(cwd = helper.cwd) {
 exports.install = async () => {
   if (!helper.isNPMProject()) {
     helper.warning('not a npm project')
-    return
+    return false
   }
   if (!helper.hasGitRepos()) {
     helper.warning('not a git repository')
-    return
+    return false
   }
   helper.installDependencies(dependencies)
   // assign to eslint
@@ -109,7 +109,7 @@ exports.install = async () => {
   // write package.json
   if (helper.writeToPck(pck)) {
     // 更新eslintrc.js 之后，必须将先提高eslintrc.js 或者加入commit index
-    helper.success('install success!!!, now you should add the eslintrc to the git commit index')
+    helper.success('prettier install success!!!, now you should add the eslintrc to the git commit index')
   } else {
     helper.warning('can not write scripts to package.json')
   }
