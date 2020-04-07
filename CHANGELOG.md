@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/JE-lee/wowow/compare/v2.1.0...v2.7.0) (2020-04-07)
+
+
+### Features
+
+* add wowow command ([930305d](https://github.com/JE-lee/wowow/commit/930305db14cf378525f408adad4ed59f8e15c743))
+* **commitizen:** 生成changelog之后，自动执行git commit ([948619a](https://github.com/JE-lee/wowow/commit/948619a1ba690e0ddd0199743c461b8d5c637cc1))
+
+
+### Bug Fixes
+
+* 多次写入prettier lintstaged 脚本 ([2860fc8](https://github.com/JE-lee/wowow/commit/2860fc877e6917705a1851d8e193244c7499b14c))
+
 ### [2.6.1](https://github.com/JE-lee/wowow/compare/v2.1.0...v2.6.1) (2020-04-05)
 
 # [2.6.0](https://github.com/JE-lee/wowow/compare/6d69e699501b39046109fed15f12245281bc5f2e...v2.6.0) (2020-04-05)
