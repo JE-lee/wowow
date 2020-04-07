@@ -26,7 +26,7 @@ const pck = (origin) => {
       if(spec.some(str => micromatch.isMatch(str, key))){
         if(_.isString(rule)){
           rule = [prettier, rule]
-        }else if (_.isArray(rule)){
+        }else if (_.isArray(rule) && !rule.some(r => r === prettier)){
           rule.unshift(prettier)
         }
         origin['lint-staged'][key] = rule
