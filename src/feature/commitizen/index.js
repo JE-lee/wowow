@@ -1,17 +1,8 @@
 const helper = require('../../helper')
 const path = require('path')
 
-const devDependencies = ['husky', 'conventional-changelog-cli', 'standard-version']
-exports.install = async function () {
-  if (!helper.isNPMProject()) {
-    helper.warning('not a npm project')
-    return false
-  }
-  if (!helper.hasGitRepos()) {
-    helper.warning('not a git repository')
-    return false
-  }
-  helper.installDependencies(devDependencies)
+exports.dependencies = ['husky', 'conventional-changelog-cli', 'standard-version']
+exports.init = async () => {
   // make the repo Commitizenn-friendly
   if (helper.isYarnUsed() || helper.isYarnAble()) {
     helper.exec('npx', 'commitizen init cz-conventional-changelog --yarn --dev --exact', true)
@@ -32,6 +23,18 @@ exports.install = async function () {
   // 这个交互体验并不好
   pck.husky.hooks['prepare-commit-msg']= 'exec < /dev/tty && npx git-cz --hook' */
   helper.saveToJSON(pck, file)
+}
+exports.install = async function () {
+  if (!helper.isNPMProject()) {
+    helper.warning('not a npm project')
+    return false
+  }
+  if (!helper.hasGitRepos()) {
+    helper.warning('not a git repository')
+    return false
+  }
+  helper.installDependencies(exports.dependencies)
+  await exports.init()
   helper.success('install done')
   return true
 }
