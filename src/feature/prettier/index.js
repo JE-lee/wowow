@@ -5,7 +5,7 @@ const micromatch = require('micromatch')
 const globby = require('globby')
 const yaml = require('yaml')
 const _ = require('lodash')
-const dependencies = [
+exports.dependencies = [
   'prettier',
   'eslint-plugin-prettier', // prettier的规则
   'eslint-config-prettier', // 解决prettier和eslint rule的冲突
@@ -93,6 +93,14 @@ async function assgnToEslint(cwd = helper.cwd) {
   return true
 }
 
+exports.init = async () => {
+  // assign to eslint
+  await assgnToEslint()
+  await helper.copyDir(path.join(__dirname, '/tpl'))
+  // write package.json
+  return helper.writeToPck(pck)
+}
+
 exports.install = async () => {
   if (!helper.isNPMProject()) {
     helper.warning('not a npm project')
@@ -102,12 +110,9 @@ exports.install = async () => {
     helper.warning('not a git repository')
     return false
   }
-  helper.installDependencies(dependencies)
-  // assign to eslint
-  await assgnToEslint()
-  await helper.copyDir(path.join(__dirname, '/tpl'))
-  // write package.json
-  if (helper.writeToPck(pck)) {
+  helper.installDependencies(exports.dependencies)
+  const result = await exports.init() 
+  if (result) {
     // 更新eslintrc.js 之后，必须将先提高eslintrc.js 或者加入commit index
     helper.success('prettier install success!!!, now you should add the eslintrc to the git commit index')
   } else {

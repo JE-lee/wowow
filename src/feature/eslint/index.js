@@ -1,6 +1,11 @@
 const helper = require('../../helper')
 const lintStaged = require('../lint-staged')
 
+exports.dependencies = ['eslint']
+exports.init = async () => {
+  return helper.exec('npx', 'eslint --init', true)
+}
+
 exports.install = async () => {
   // if eslint has ready
   if (!helper.isNPMProject()) {
@@ -12,9 +17,10 @@ exports.install = async () => {
     return false
   }
   if (!helper.isEslintReady()) {
-    helper.installDependencies(['eslint'])
-    helper.exec('npx', 'eslint --init', true)
+    helper.installDependencies(exports.dependencies)
+    await exports.init()
   }
+  
   // install lint-staged
   const result = await lintStaged.install()
   if (result) {
