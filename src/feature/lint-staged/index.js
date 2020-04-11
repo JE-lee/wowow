@@ -1,4 +1,9 @@
 const helper = require('../../helper')
+exports.dependencies = [
+  'cross-env',
+  'husky',
+  'lint-staged'
+]
 const pck = (origin) => {
   const isPrettier = helper.isPackageReady('prettier', process.cwd())
   origin.husky = origin.husky || {}
@@ -11,6 +16,12 @@ const pck = (origin) => {
   }
   origin['lint-staged'] = { '*.{js, vue, jsx, ts, tsx}': scripts}
 }
+
+exports.init = async () => {
+  // write package.json
+  return helper.writeToPck(pck)
+}
+
 exports.install = async function(){
   if (!helper.isNPMProject()) {
     helper.warning('not a npm project')
@@ -25,13 +36,9 @@ exports.install = async function(){
     helper.warning('eslint was  found in this repo.')
     return false
   }
-  helper.installDependencies([
-    'cross-env',
-    'husky',
-    'lint-staged'
-  ])
-  // write package.json
-  if (helper.writeToPck(pck)) {
+  helper.installDependencies(exports.dependencies)
+  const result = await exports.init()
+  if (result) {
     helper.success('lint-staged is ready')
     return true 
   } else {
