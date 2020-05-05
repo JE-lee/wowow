@@ -10,11 +10,14 @@ const pck = (origin) => {
   origin.husky.hooks = origin.husky.hooks || {}
   origin.husky.hooks['pre-commit'] = 'lint-staged'
   // only lint the files that will be committed
-  const scripts = ['cross-env NODE_ENV=production eslint --fix --quiet'] // remove --cache, due to the lint-staged
+  const scripts = [
+    'cross-env NODE_ENV=production eslint --fix --quiet',
+    'git add'
+  ] // remove --cache, due to the lint-staged
   if(isPrettier){ 
     scripts.unshift('prettier --write')
   }
-  origin['lint-staged'] = { '*.{js, vue, jsx, ts, tsx}': scripts}
+  origin['lint-staged'] = { '**/*.(js|vue|jsx|ts|tsx)': scripts}
 }
 
 exports.init = async () => {
