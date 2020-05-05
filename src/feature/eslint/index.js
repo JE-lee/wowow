@@ -1,5 +1,7 @@
 const helper = require('../../helper')
 const lintStaged = require('../lint-staged')
+const fsExtra = require('fs-extra')
+const path = require('path')
 
 exports.dependencies = ['eslint']
 exports.init = async () => {
@@ -19,6 +21,12 @@ exports.install = async () => {
   if (!helper.isEslintReady()) {
     helper.installDependencies(exports.dependencies)
     await exports.init()
+  }
+
+  // 如果使用了yarn， 就将package-lock.json删除
+  const pckLock = path.resolve(process.cwd(), './package-lock.json')
+  if (helper.isYarnUsed() && fsExtra.existsSync(pckLock)) {
+    fsExtra.remove()
   }
   
   // install lint-staged
