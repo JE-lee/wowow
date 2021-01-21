@@ -1,3 +1,16 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [2.8.1](https://github.com/JE-lee/wowow/compare/v2.8.0...v2.8.1) (2021-01-21)
+
+
+### Bug Fixes
+
+* typescript-eslint no eslintrc or prettierrc ([83d414c](https://github.com/JE-lee/wowow/commit/83d414ccf73f31973f2d4c8dafe53f4a793c9efe))
+* 修改lint-staged 脚本 ([c25cb42](https://github.com/JE-lee/wowow/commit/c25cb42a9dc3ef9ca8c2f7a8a12b648a1eeefc85))
+* 安装eslint 后删除package-lock ([45b0c37](https://github.com/JE-lee/wowow/commit/45b0c37b8bfd48000e8439f4b7aba7302deb896c))
+
 <a name="2.8.0"></a>
 # [2.8.0](https://github.com/JE-lee/wowow/compare/v2.7.1...v2.8.0) (2020-04-11)
 
@@ -84,6 +97,3 @@
 * 支持写入prettier的规则到eslintrc.js, eslintrc.yml, eslintrc.json中 ([ccb9568](https://github.com/JE-lee/wowow/commit/ccb9568))
 * 更合适的prettier配置，添加对vue文件的eslint支持 ([c763fa9](https://github.com/JE-lee/wowow/commit/c763fa9))
 * **commitizen:** 增加change:first changelog 脚本命令 ([f5d3d90](https://github.com/JE-lee/wowow/commit/f5d3d90))
-
-
-
