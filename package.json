@@ -46,7 +46,7 @@
     "eslint": "^6.5.1",
     "husky": "^4.2.3",
     "mocha": "^6.2.1",
-    "standard-version": "^7.1.0"
+    "standard-version": "^8.0.1"
   },
   "bin": {
     "wowow": "./src/install.js"
