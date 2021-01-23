@@ -35,7 +35,7 @@ exports.install = async () => {
   }
   helper.installDependencies(devDependencies)
   // copy eslint prittier
-  helper.copyDir(path.join(process.cwd(), '/tpl'))
+  helper.copyDir(path.join(__dirname, '/tpl'))
   helper.installDependencies([
     'cross-env',
     'husky',

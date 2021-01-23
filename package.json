@@ -1,12 +1,13 @@
 {
   "name": "wowow",
-  "version": "2.8.0",
+  "version": "2.8.2",
   "description": "a cli tool for install ESlint, prettier, lint-staged and commitlint quickly",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
     "changelog": "standard-version && conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "changelog:first": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "deploy": "bash ./deploy.sh",
     "commit": "npx git-cz"
   },
   "author": "jelee",
