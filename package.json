@@ -1,6 +1,6 @@
 {
   "name": "wowow",
-  "version": "2.8.1",
+  "version": "2.8.2",
   "description": "a cli tool for install ESlint, prettier, lint-staged and commitlint quickly",
   "main": "index.js",
   "scripts": {
