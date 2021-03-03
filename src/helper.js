@@ -68,10 +68,11 @@ function isYarnAble(){
 }
 
 function installDependencies(dependencies){
-  retry([
-    `yarn add ${ dependencies.join(' ')} --dev`,
-    `npm install ${ dependencies.join(' ') } --save-dev`
-  ])
+  const commands = [`npm install ${ dependencies.join(' ') } --save-dev`]
+  if (isYarnUsed && isYarnAble) {
+    commands.unshift(`yarn add ${ dependencies.join(' ')} --dev`)
+  }
+  retry(commands)
 }
 
 function install(options, feat, root = (process.cwd())){
