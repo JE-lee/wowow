@@ -4,7 +4,7 @@ const path = require('path')
 exports.dependencies = ['husky', 'conventional-changelog-cli', 'standard-version']
 exports.init = async () => {
   // make the repo Commitizenn-friendly
-  if (helper.isYarnUsed() || helper.isYarnAble()) {
+  if (helper.isYarnUsed() && helper.isYarnAble()) {
     helper.exec('npx', 'commitizen init cz-conventional-changelog --yarn --dev --exact', true)
   } else {
     helper.exec('npx', 'commitizen init cz-conventional-changelog --save-dev --save-exact', true)

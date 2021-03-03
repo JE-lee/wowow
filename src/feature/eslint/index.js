@@ -26,7 +26,7 @@ exports.install = async () => {
   // 如果使用了yarn， 就将package-lock.json删除
   const pckLock = path.resolve(process.cwd(), './package-lock.json')
   if (helper.isYarnUsed() && fsExtra.existsSync(pckLock)) {
-    fsExtra.remove()
+    fsExtra.remove(pckLock)
   }
   
   // install lint-staged
