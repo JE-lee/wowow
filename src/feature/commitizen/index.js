@@ -1,7 +1,7 @@
 const helper = require('../../helper')
 const path = require('path')
 
-exports.dependencies = ['husky', 'conventional-changelog-cli', 'standard-version']
+exports.dependencies = ['husky@^4.1.0', 'conventional-changelog-cli', 'standard-version']
 exports.init = async () => {
   // make the repo Commitizenn-friendly
   if (helper.isYarnUsed() && helper.isYarnAble()) {
