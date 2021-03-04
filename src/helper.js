@@ -69,7 +69,7 @@ function isYarnAble(){
 
 function installDependencies(dependencies){
   const commands = [`npm install ${ dependencies.join(' ') } --save-dev`]
-  if (isYarnUsed && isYarnAble) {
+  if (isYarnUsed() && isYarnAble()) {
     commands.unshift(`yarn add ${ dependencies.join(' ')} --dev`)
   }
   retry(commands)
