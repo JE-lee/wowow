@@ -39,13 +39,16 @@ npm install wowow -g
 # 在新项目上安装所有特性, 推荐
 wowow
 
+# 安装 eslint 和 lintstaged
+wowow eslint
+
 # 在已经有eslint的项目上安装prettier，这会自动为你解决eslint和prettier的规则冲突。
 wowow prettier
 
 # 在新项目上面安装commitlint
 wowow commitlint
 
-# 在新项目上面快速安装typescript-eslint
+# 在新项目上面快速在 typescript 项目中使 eslint
 wowow typescript-eslint
 ```
 ## feature
