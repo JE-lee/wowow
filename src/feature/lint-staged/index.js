@@ -36,7 +36,7 @@ exports.install = async function(){
   }
   // if eslint ready
   if(!helper.isEslintReady()){
-    helper.warning('eslint was  found in this repo.')
+    helper.warning('eslint was not use in this repo.')
     return false
   }
   helper.installDependencies(exports.dependencies)
