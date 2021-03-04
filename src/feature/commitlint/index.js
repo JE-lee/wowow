@@ -2,7 +2,7 @@ const helper = require('../../helper')
 const commitizen = require('../commitizen')
 const path = require('path')
 
-exports.dependencies = ['@commitlint/config-conventional', '@commitlint/cli', 'husky']
+exports.dependencies = ['@commitlint/config-conventional', '@commitlint/cli', 'husky@^4.1.0']
 
 exports.init = async () => {
   // copy file 

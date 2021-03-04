@@ -38,7 +38,7 @@ exports.install = async () => {
   helper.copyDir(path.join(__dirname, '/tpl'))
   helper.installDependencies([
     'cross-env',
-    'husky',
+    'husky@^4.1.0',
     'lint-staged'
   ])
   // write package.json

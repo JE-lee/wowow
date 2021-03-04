@@ -1,7 +1,7 @@
 const helper = require('../../helper')
 exports.dependencies = [
   'cross-env',
-  'husky',
+  'husky@^4.1.0',
   'lint-staged'
 ]
 const pck = (origin) => {
