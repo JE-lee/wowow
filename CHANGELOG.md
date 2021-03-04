@@ -1,3 +1,14 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [2.8.5](https://github.com/JE-lee/wowow/compare/v2.8.4...v2.8.5) (2021-03-04)
+
+
+### Bug Fixes
+
+* lock the version of husky base on ^4 ([537dee8](https://github.com/JE-lee/wowow/commit/537dee8ffc29818711531f544165b68b8033ebb5))
+
 <a name="2.8.4"></a>
 ## [2.8.4](https://github.com/JE-lee/wowow/compare/v2.8.3...v2.8.4) (2021-03-04)
 
@@ -116,6 +127,3 @@
 * 安装前检查eslint是否已经安装，避免重复安装 ([0512515](https://github.com/JE-lee/wowow/commit/0512515))
 * 支持写入prettier的规则到eslintrc.js, eslintrc.yml, eslintrc.json中 ([ccb9568](https://github.com/JE-lee/wowow/commit/ccb9568))
 * 更合适的prettier配置，添加对vue文件的eslint支持 ([c763fa9](https://github.com/JE-lee/wowow/commit/c763fa9))
-
-
-
