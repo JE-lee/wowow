@@ -1,3 +1,14 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [2.8.4](https://github.com/JE-lee/wowow/compare/v2.8.3...v2.8.4) (2021-03-04)
+
+
+### Bug Fixes
+
+* disable use yarn by default ([4159a26](https://github.com/JE-lee/wowow/commit/4159a260831ccdc4bdce9c5368b38ba39c0e5fe2))
+
 <a name="2.8.3"></a>
 ## [2.8.3](https://github.com/JE-lee/wowow/compare/v2.8.1...v2.8.3) (2021-03-03)
 
@@ -106,6 +117,3 @@
 * 安装前检查eslint是否已经安装，避免重复安装 ([0512515](https://github.com/JE-lee/wowow/commit/0512515))
 * 支持写入prettier的规则到eslintrc.js, eslintrc.yml, eslintrc.json中 ([ccb9568](https://github.com/JE-lee/wowow/commit/ccb9568))
 * 更合适的prettier配置，添加对vue文件的eslint支持 ([c763fa9](https://github.com/JE-lee/wowow/commit/c763fa9))
-
-
-
