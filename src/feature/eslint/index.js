@@ -14,10 +14,10 @@ exports.install = async () => {
     helper.warning('not a npm project')
     return false
   }
-  if (!helper.hasGitRepos()) {
-    helper.warning('not a git repository')
-    return false
-  }
+  // if (!helper.hasGitRepos()) {
+  //   helper.warning('not a git repository')
+  //   return false
+  // }
   if (!helper.isEslintReady()) {
     helper.installDependencies(exports.dependencies)
     await exports.init()
