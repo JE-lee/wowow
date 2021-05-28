@@ -11,8 +11,11 @@ set -e
 if [[ `current_branch` != 'release' ]]
 then
   echo 'publish fail! you should checkout into release!'
-  exit -1
+  git checkout release
+  # exit -1
 fi
+
+git merge master
 
 # changelog
 npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0
@@ -24,4 +27,8 @@ npx standard-version
 # push to github
 # auto publish to npm
 git push origin release
+
+git checkout master
+git merge release
+git push origin master
 
