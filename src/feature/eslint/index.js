@@ -30,10 +30,12 @@ exports.install = async () => {
   }
   
   // install lint-staged
-  const result = await lintStaged.install()
-  if (result) {
-    helper.success('install success!!! now you should add eslintrc file to the git repo for lint-staged')
-  }
+  // const result = await lintStaged.install()
+  // if (result) {
+  //   helper.success('install success!!! now you should add eslintrc file to the git repo for lint-staged')
+  // }
+
+  helper.success('eslint is ready!')
 }
 
 exports.isEslintReady = helper.isEslintReady
