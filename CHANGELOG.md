@@ -1,22 +1,4 @@
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-### [2.8.9](https://github.com/JE-lee/wowow/compare/v2.8.0...v2.8.9) (2021-05-28)
-
-
-### Bug Fixes
-
-* 安装eslint 后删除package-lock ([45b0c37](https://github.com/JE-lee/wowow/commit/45b0c37b8bfd48000e8439f4b7aba7302deb896c))
-* 修改lint-staged 脚本 ([c25cb42](https://github.com/JE-lee/wowow/commit/c25cb42a9dc3ef9ca8c2f7a8a12b648a1eeefc85))
-* disable use yarn by default ([4159a26](https://github.com/JE-lee/wowow/commit/4159a260831ccdc4bdce9c5368b38ba39c0e5fe2))
-* disable use yarn defaulttly ([3a69471](https://github.com/JE-lee/wowow/commit/3a694710805a94bd73edb91fb78e4b1d7762c9c5))
-* lock the version of husky base on ^4 ([537dee8](https://github.com/JE-lee/wowow/commit/537dee8ffc29818711531f544165b68b8033ebb5))
-* not required .git for eslint and prettier ([3a8427f](https://github.com/JE-lee/wowow/commit/3a8427f5e145615d44f9d6caea1dbe19b480ef75))
-* not required .git for lintstaged ([454ab5f](https://github.com/JE-lee/wowow/commit/454ab5f27316e3b9d34cf1b0e25abb7ac420e7de))
-* typescript-eslint no eslintrc or prettierrc ([83d414c](https://github.com/JE-lee/wowow/commit/83d414ccf73f31973f2d4c8dafe53f4a793c9efe))
-
-## [2.8.8](https://github.com/JE-lee/wowow/compare/2.8.2...2.8.8) (2021-05-28)
+## [2.8.9](https://github.com/JE-lee/wowow/compare/2.8.2...v2.8.9) (2021-05-28)
 
 
 ### Bug Fixes
@@ -122,3 +104,6 @@ All notable changes to this project will be documented in this file. See [standa
 * typescript-eslint ([1120142](https://github.com/JE-lee/wowow/commit/1120142d0dbd9d507b0539eb69c2367b2f117185))
 * v2重构eslint, prettier, 待测试 ([7d89e1a](https://github.com/JE-lee/wowow/commit/7d89e1ad3afbdaf2b30b069d1957b71eb9f7f387))
 * vscode-mocha-debug ([1b2221e](https://github.com/JE-lee/wowow/commit/1b2221ea60fb5487d610bdba5be25e47850635d5))
+
+
+
