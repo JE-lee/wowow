@@ -1,3 +1,19 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [2.9.0](https://github.com/JE-lee/wowow/compare/v2.8.9...v2.9.0) (2021-05-28)
+
+
+### Features
+
+* 更清晰的功能划分 ([4168dbe](https://github.com/JE-lee/wowow/commit/4168dbee2f1c03d7d78891261c326551e4c7fb6a))
+
+
+### Bug Fixes
+
+* a litter bug ([4192772](https://github.com/JE-lee/wowow/commit/41927727c57c31683d3213e1bc518b481ef6a104))
+
 ## [2.8.9](https://github.com/JE-lee/wowow/compare/2.8.2...v2.8.9) (2021-05-28)
 
 
@@ -104,6 +120,3 @@
 * typescript-eslint ([1120142](https://github.com/JE-lee/wowow/commit/1120142d0dbd9d507b0539eb69c2367b2f117185))
 * v2重构eslint, prettier, 待测试 ([7d89e1a](https://github.com/JE-lee/wowow/commit/7d89e1ad3afbdaf2b30b069d1957b71eb9f7f387))
 * vscode-mocha-debug ([1b2221e](https://github.com/JE-lee/wowow/commit/1b2221ea60fb5487d610bdba5be25e47850635d5))
-
-
-
