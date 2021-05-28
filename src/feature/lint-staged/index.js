@@ -11,7 +11,7 @@ const pck = (origin) => {
   origin.husky.hooks['pre-commit'] = 'lint-staged'
   // only lint the files that will be committed
   const scripts = [
-    'cross-env NODE_ENV=production eslint --fix --quiet',
+    'eslint --fix --quiet',
     'git add'
   ] // remove --cache, due to the lint-staged
   if(isPrettier){ 
@@ -27,16 +27,16 @@ exports.init = async () => {
 
 exports.install = async function(){
   if (!helper.isNPMProject()) {
-    helper.warning('not a npm project')
+    helper.warning('not in a npm project')
     return false
   }
   if (!helper.hasGitRepos()) {
-    helper.warning('not a git repository')
+    helper.warning('not in a git repository')
     return false
   }
   // if eslint ready
   if(!helper.isEslintReady()){
-    helper.warning('eslint was not use in this repo.')
+    helper.warning('eslint was not used in this repo.')
     return false
   }
   helper.installDependencies(exports.dependencies)
