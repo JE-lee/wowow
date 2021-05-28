@@ -30,10 +30,10 @@ exports.install = async function(){
     helper.warning('not a npm project')
     return false
   }
-  if (!helper.hasGitRepos()) {
-    helper.warning('not a git repository')
-    return false
-  }
+  // if (!helper.hasGitRepos()) {
+  //   helper.warning('not a git repository')
+  //   return false
+  // }
   // if eslint ready
   if(!helper.isEslintReady()){
     helper.warning('eslint was not use in this repo.')
