@@ -106,10 +106,10 @@ exports.install = async () => {
     helper.warning('not a npm project')
     return false
   }
-  if (!helper.hasGitRepos()) {
-    helper.warning('not a git repository')
-    return false
-  }
+  // if (!helper.hasGitRepos()) {
+  //   helper.warning('not a git repository')
+  //   return false
+  // }
   helper.installDependencies(exports.dependencies)
   const result = await exports.init() 
   if (result) {
