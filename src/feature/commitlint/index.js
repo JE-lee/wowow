@@ -23,17 +23,17 @@ exports.init = async () => {
 
 exports.install = async function(){
   if (!helper.isNPMProject()) {
-    helper.warning('not a npm project')
+    helper.warning('not in a npm project')
     return false
   }
   if (!helper.hasGitRepos()) {
-    helper.warning('not a git repository')
+    helper.warning('not in a git repository')
     return false
   }
   helper.installDependencies(exports.dependencies)
   await exports.init()
   // install commitizen
   await commitizen.install()
-  helper.success('commitlint has been installed successfully.')
+  helper.success('commitlint is ready.')
   return true
 }

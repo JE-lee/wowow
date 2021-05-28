@@ -1,5 +1,4 @@
 const helper = require('../../helper')
-const lintStaged = require('../lint-staged')
 const fsExtra = require('fs-extra')
 const path = require('path')
 
@@ -9,15 +8,11 @@ exports.init = async () => {
 }
 
 exports.install = async () => {
-  // if eslint has ready
   if (!helper.isNPMProject()) {
-    helper.warning('not a npm project')
+    helper.warning('not in a npm project')
     return false
   }
-  // if (!helper.hasGitRepos()) {
-  //   helper.warning('not a git repository')
-  //   return false
-  // }
+  
   if (!helper.isEslintReady()) {
     helper.installDependencies(exports.dependencies)
     await exports.init()
@@ -29,11 +24,7 @@ exports.install = async () => {
     fsExtra.remove(pckLock)
   }
   
-  // install lint-staged
-  const result = await lintStaged.install()
-  if (result) {
-    helper.success('install success!!! now you should add eslintrc file to the git repo for lint-staged')
-  }
+  helper.success('eslint is ready!')
 }
 
 exports.isEslintReady = helper.isEslintReady

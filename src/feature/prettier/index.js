@@ -81,7 +81,7 @@ async function assgnToEslint(cwd = helper.cwd) {
       arr.push(item)
     }
   }
-  eslintrc.extends = eslintrc.extends || []
+  eslintrc.extends = Array.isArray(eslintrc.extends) ? eslintrc.extends : [eslintrc.extends]
   push(eslintrc.extends,'eslint-config-prettier')
   eslintrc.plugins = eslintrc.plugins || []
   push(eslintrc.plugins, 'prettier')
@@ -103,18 +103,15 @@ exports.init = async () => {
 
 exports.install = async () => {
   if (!helper.isNPMProject()) {
-    helper.warning('not a npm project')
+    helper.warning('not in a npm project')
     return false
   }
-  // if (!helper.hasGitRepos()) {
-  //   helper.warning('not a git repository')
-  //   return false
-  // }
+  
   helper.installDependencies(exports.dependencies)
   const result = await exports.init() 
   if (result) {
     // 更新eslintrc.js 之后，必须将先提高eslintrc.js 或者加入commit index
-    helper.success('prettier install success!!!, now you should add the eslintrc to the git commit index')
+    helper.success('prettier is ready!')
   } else {
     helper.warning('can not write scripts to package.json')
   }

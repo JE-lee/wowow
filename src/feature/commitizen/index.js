@@ -1,7 +1,7 @@
 const helper = require('../../helper')
 const path = require('path')
 
-exports.dependencies = ['husky@^4.1.0', 'conventional-changelog-cli', 'standard-version']
+exports.dependencies = ['conventional-changelog-cli', 'standard-version']
 exports.init = async () => {
   // make the repo Commitizenn-friendly
   if (helper.isYarnUsed() && helper.isYarnAble()) {
@@ -14,8 +14,8 @@ exports.init = async () => {
   const pck = helper.getJSON(file)
   pck.scripts = pck.scripts || {}
   pck.scripts['commit'] = 'npx git-cz'
-  // pck.scripts['changelog:first'] = 'conventional-changelog -p angular -i CHANGELOG.md -s -r 0'
-  pck.scripts['changelog'] = 'standard-version && conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add . && git commit -m "docs(changelog.md): update changelog"'
+  pck.scripts['changelog:first'] = 'conventional-changelog -p angular -i CHANGELOG.md -s -r 0'
+  pck.scripts['changelog'] = 'standard-version && conventional-changelog -p angular -i CHANGELOG.md -s -r 0'
 
   // husky hooks
   /* pck.husky = pck.husky || {}
@@ -26,11 +26,7 @@ exports.init = async () => {
 }
 exports.install = async function () {
   if (!helper.isNPMProject()) {
-    helper.warning('not a npm project')
-    return false
-  }
-  if (!helper.hasGitRepos()) {
-    helper.warning('not a git repository')
+    helper.warning('not in a npm project')
     return false
   }
   helper.installDependencies(exports.dependencies)

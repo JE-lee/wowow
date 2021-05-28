@@ -5,6 +5,7 @@ const helper = require('./helper')
 const all = require('./feature/all')
 const eslint = require('./feature/eslint')
 const prettier = require('./feature/prettier')
+const lintStaged = require('./feature/lint-staged')
 const mocha = require('./feature/mocha/index')
 const debugMocha = require('./feature/mocha/vscode-debug')
 const commitLint = require('./feature/commitlint/index')
@@ -22,6 +23,12 @@ program
 program
   .command('prettier')
   .action(() => prettier.install())
+
+// lint-staged
+// prettier
+program
+  .command('lint-staged')
+  .action(() => lintStaged.install())
 
 // commit lint
 program
