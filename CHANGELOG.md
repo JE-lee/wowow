@@ -1,13 +1,11 @@
-# Changelog
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-### [2.8.7](https://github.com/JE-lee/wowow/compare/v2.8.6...v2.8.7) (2021-05-28)
+## [2.8.7](https://github.com/JE-lee/wowow/compare/v2.8.6...v2.8.7) (2021-05-28)
 
 
 ### Bug Fixes
 
 * not required .git for lintstaged ([454ab5f](https://github.com/JE-lee/wowow/commit/454ab5f27316e3b9d34cf1b0e25abb7ac420e7de))
+
+
 
 ## [2.8.6](https://github.com/JE-lee/wowow/compare/2.8.2...v2.8.6) (2021-05-28)
 
@@ -114,3 +112,6 @@ All notable changes to this project will be documented in this file. See [standa
 * typescript-eslint ([1120142](https://github.com/JE-lee/wowow/commit/1120142d0dbd9d507b0539eb69c2367b2f117185))
 * v2重构eslint, prettier, 待测试 ([7d89e1a](https://github.com/JE-lee/wowow/commit/7d89e1ad3afbdaf2b30b069d1957b71eb9f7f387))
 * vscode-mocha-debug ([1b2221e](https://github.com/JE-lee/wowow/commit/1b2221ea60fb5487d610bdba5be25e47850635d5))
+
+
+
